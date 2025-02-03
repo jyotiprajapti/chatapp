@@ -18,7 +18,7 @@ export const getNotification = (title, body) => {
   console.log("body", body)
   PushNotification.localNotification({
     channelId: key, //this must be same with channelid in createchannel
-    title: 'gdgdf',
-    message: `gfdhf`,
+    title: `${title}`,
+    message: `${body}`,
   });
 };
