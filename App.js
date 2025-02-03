@@ -16,6 +16,7 @@ import { AuthenticatedUserContext, AuthenticatedUserProvider } from "./src/conte
 import { UnreadMessagesContext, UnreadMessagesProvider } from "./src/contexts/UnreadMessagesContext";
 import checkAndRequestNotificationPermission from "./src/utilities/checkNotification";
 import { saveFcmToken } from "./src/utilities/saveFcmToken";
+import { createChannel } from "./src/services/notificationService";
 const Stack = createNativeStackNavigator();
 
 const StackNavigator = () => {
@@ -23,6 +24,11 @@ const StackNavigator = () => {
   useEffect(()=>{
     checkAndRequestNotificationPermission()
     },[])
+
+    useEffect(()=>{
+      createChannel()
+    },[])
+
     useEffect(()=>{
       messaging().onTokenRefresh(async (newToken) => {
         const userId = auth.currentUser?.uid; // Ensure the user is logged in
